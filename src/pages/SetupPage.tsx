@@ -43,6 +43,7 @@ export function SetupPage() {
     addonChips: 5000,
     buyIn: 20,
     buyInLabel: 'Buy-in',
+    gageDescription: '',
     payoutPercentages: [50, 30, 20],
   });
 
@@ -261,8 +262,8 @@ export function SetupPage() {
             {config.buyInLabel === 'Gage' ? (
               <input
                 type="text"
-                value={config.buyIn === 0 ? '' : String(config.buyIn)}
-                onChange={e => setConfig({ ...config, buyIn: Number(e.target.value) || 0 })}
+                value={config.gageDescription}
+                onChange={e => setConfig({ ...config, gageDescription: e.target.value })}
                 placeholder="Ex: dernier fait la vaisselle..."
                 className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 transition-colors"
               />

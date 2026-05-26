@@ -45,6 +45,7 @@ export interface TournamentConfig {
   addonChips: number;
   buyIn: number;
   buyInLabel: string; // "Buy-in" ou "Gage"
+  gageDescription: string;
   payoutPercentages: number[];
 }
 
