@@ -1,73 +1,59 @@
-# React + TypeScript + Vite
+# PokerTimer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application professionnelle de gestion de tournois de poker. Timer, blindes automatiques, gestion des tables, classement en temps réel.
 
-Currently, two official plugins are available:
+## Fonctionnalités
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Création de tournoi** : configuration complète (joueurs, stack, durée, blindes)
+- **Timer professionnel** : affichage grand format, notifications sonores, fullscreen
+- **Génération automatique des blindes** : structure réaliste basée sur la durée et les stacks
+- **Gestion des tables** : répartition et rééquilibrage automatiques
+- **Éliminations** : classement automatique, podium, historique
+- **Statistiques temps réel** : average stack, joueurs restants, temps estimé
+- **Sauvegarde** : auto-save IndexedDB, export JSON, reprise de tournoi
+- **Interface** : dark mode, animations fluides, responsive
 
-## React Compiler
+## Stack technique
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + TypeScript
+- Vite
+- TailwindCSS v4
+- Zustand (state management)
+- IndexedDB (persistance)
+- Lucide React (icônes)
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Build
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
+npm run preview
 ```
+
+## Structure du projet
+
+```
+src/
+├── components/       # Composants UI
+│   ├── layout/       # Layout principal
+│   ├── timer/        # Timer du tournoi
+│   ├── tables/       # Vue des tables
+│   ├── players/      # Gestion des joueurs
+│   ├── stats/        # Statistiques
+│   └── tournament/   # Blindes, classement
+├── hooks/            # Hooks personnalisés
+├── pages/            # Pages de l'application
+├── store/            # State management (Zustand)
+├── types/            # Types TypeScript
+└── utils/            # Utilitaires (blindes, tables, storage)
+```
+
+## Licence
+
+MIT
