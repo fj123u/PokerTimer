@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Clock, Users, Trash2, Download, Play } from 'lucide-react';
 import { loadAllTournaments, deleteTournament, exportTournamentJSON } from '../utils/storage';
 import { useTournamentStore } from '../store/tournamentStore';

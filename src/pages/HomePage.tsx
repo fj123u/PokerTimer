@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Plus, Clock, Trophy, Users, BarChart3 } from 'lucide-react';
 import { useTournamentStore } from '../store/tournamentStore';
 

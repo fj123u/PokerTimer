@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Plus, Trash2, Users, Play, Shuffle, Save, FolderOpen } from 'lucide-react';
 import { useTournamentStore } from '../store/tournamentStore';
 import { saveConfig, loadAllConfigs, deleteConfig } from '../utils/storage';
@@ -195,15 +195,15 @@ export function SetupPage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1.5">Stack de départ</label>
-              <select
+              <input
+                type="number"
+                min={100}
+                step={100}
                 value={config.startingStack}
-                onChange={e => setConfig({ ...config, startingStack: Number(e.target.value) })}
+                onChange={e => setConfig({ ...config, startingStack: Math.max(100, Number(e.target.value)) })}
                 className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500"
-              >
-                {[1000, 2000, 3000, 5000, 10000, 15000, 20000, 25000, 50000].map(n => (
-                  <option key={n} value={n}>{n.toLocaleString()}</option>
-                ))}
-              </select>
+                placeholder="Ex: 10000"
+              />
             </div>
           </div>
 

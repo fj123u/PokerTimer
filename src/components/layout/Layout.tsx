@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 import { Home, Clock, History, Trophy, BarChart3 } from 'lucide-react';
 import { useTournamentStore } from '../../store/tournamentStore';
 

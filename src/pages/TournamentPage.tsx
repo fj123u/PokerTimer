@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useTournamentStore } from '../store/tournamentStore';
 import { TimerDisplay } from '../components/timer/TimerDisplay';
 import { TablesView } from '../components/tables/TablesView';
