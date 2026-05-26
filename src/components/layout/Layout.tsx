@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Clock, History, Trophy } from 'lucide-react';
+import { Home, Clock, History, Trophy, BarChart3 } from 'lucide-react';
 import { useTournamentStore } from '../../store/tournamentStore';
 
 interface LayoutProps {
@@ -15,6 +15,7 @@ export function Layout({ children }: LayoutProps) {
     { path: '/', icon: Home, label: 'Accueil' },
     { path: '/setup', icon: Trophy, label: 'Nouveau' },
     ...(tournament ? [{ path: '/tournament', icon: Clock, label: 'Tournoi' }] : []),
+    { path: '/stats', icon: BarChart3, label: 'Stats' },
     { path: '/history', icon: History, label: 'Historique' },
   ];
 

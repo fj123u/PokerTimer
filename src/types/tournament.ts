@@ -44,7 +44,28 @@ export interface TournamentConfig {
   reentryMaxLevel: number;
   addonChips: number;
   buyIn: number;
+  buyInLabel: string; // "Buy-in" ou "Gage"
   payoutPercentages: number[];
+}
+
+export interface SavedConfig {
+  id: string;
+  name: string;
+  config: TournamentConfig;
+  playerNames: string[];
+  createdAt: number;
+}
+
+export interface PlayerStats {
+  name: string;
+  tournamentsPlayed: number;
+  wins: number;
+  podiums: number; // top 3
+  itm: number; // in the money (top payé)
+  totalBuyIns: number;
+  bestPosition: number;
+  averagePosition: number;
+  eliminationPositions: number[];
 }
 
 export type TournamentStatus = 'setup' | 'running' | 'paused' | 'break' | 'finished';

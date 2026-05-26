@@ -4,6 +4,7 @@ import { HomePage } from './pages/HomePage';
 import { SetupPage } from './pages/SetupPage';
 import { TournamentPage } from './pages/TournamentPage';
 import { HistoryPage } from './pages/HistoryPage';
+import { PlayerStatsPage } from './pages/PlayerStatsPage';
 import { useTimer } from './hooks/useTimer';
 import { useAutoSave } from './hooks/useAutoSave';
 
@@ -18,6 +19,7 @@ export function App() {
         <Route path="/setup" element={<SetupPage />} />
         <Route path="/tournament" element={<TournamentPage />} />
         <Route path="/history" element={<HistoryPage />} />
+        <Route path="/stats" element={<PlayerStatsPage />} />
       </Routes>
     </Layout>
   );
