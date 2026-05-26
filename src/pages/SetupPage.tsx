@@ -43,6 +43,7 @@ export function SetupPage() {
     buyIn: 20,
     buyInLabel: 'Buy-in',
     gageDescription: '',
+    itmPlaces: 3,
     payoutPercentages: [50, 30, 20],
   });
 
@@ -261,6 +262,19 @@ export function SetupPage() {
                 className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500"
               />
             )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1.5">Places payées (ITM)</label>
+            <input
+              type="number"
+              min={1}
+              max={20}
+              value={config.itmPlaces}
+              onChange={e => setConfig({ ...config, itmPlaces: Math.max(1, Number(e.target.value)) })}
+              className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500"
+            />
+            <p className="text-xs text-gray-500 mt-1">Nombre de joueurs dans les places payées</p>
           </div>
 
           <div className="space-y-3">

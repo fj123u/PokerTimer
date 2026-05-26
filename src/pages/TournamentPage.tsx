@@ -6,6 +6,7 @@ import { StatsPanel } from '../components/stats/StatsPanel';
 import { PlayersPanel } from '../components/players/PlayersPanel';
 import { BlindsStructure } from '../components/tournament/BlindsStructure';
 import { RankingPanel } from '../components/tournament/RankingPanel';
+import { VictoryScreen } from '../components/tournament/VictoryScreen';
 import { useState } from 'react';
 import { LayoutGrid, Users, Trophy, List } from 'lucide-react';
 
@@ -17,6 +18,10 @@ export function TournamentPage() {
 
   if (!tournament) {
     return <Navigate to="/setup" replace />;
+  }
+
+  if (tournament.status === 'finished') {
+    return <VictoryScreen />;
   }
 
   const tabs: { id: Tab; label: string; icon: typeof LayoutGrid }[] = [

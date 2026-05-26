@@ -45,6 +45,7 @@ export interface TournamentConfig {
   buyIn: number;
   buyInLabel: string; // "Buy-in" ou "Gage"
   gageDescription: string;
+  itmPlaces: number;
   payoutPercentages: number[];
 }
 

@@ -12,7 +12,7 @@ export function StatsPanel() {
     if (!tournament) return null;
 
     const activePlayers = tournament.players.filter(p => !p.isEliminated);
-    const totalChips = activePlayers.reduce((sum, p) => sum + p.chips, 0);
+    const totalChips = tournament.players.length * tournament.config.startingStack;
     const activeTables = tournament.tables.filter(t => t.isActive).length;
     const levelElims = tournament.eliminationHistory.filter(
       e => e.level === tournament.currentLevel
