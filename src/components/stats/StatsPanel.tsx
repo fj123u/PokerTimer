@@ -1,10 +1,41 @@
+import { useMemo } from 'react';
 import { Users, Coins, TrendingUp, LayoutGrid, Clock, Target } from 'lucide-react';
 import { useTournamentStore } from '../../store/tournamentStore';
 import { formatChips } from '../../utils/blinds';
 import { formatTimeLong } from '../../hooks/useTimer';
+import type { TournamentStats } from '../../types/tournament';
 
 export function StatsPanel() {
-  const stats = useTournamentStore(s => s.getStats());
+  const tournament = useTournamentStore(s => s.tournament);
+
+  const stats: TournamentStats | null = useMemo(() => {
+    if (!tournament) return null;
+
+    const activePlayers = tournament.players.filter(p => !p.isEliminated);
+    const totalChips = activePlayers.reduce((sum, p) => sum + p.chips, 0);
+    const activeTables = tournament.tables.filter(t => t.isActive).length;
+    const levelElims = tournament.eliminationHistory.filter(
+      e => e.level === tournament.currentLevel
+    ).length;
+
+    const levelsRemaining = tournament.blindStructure.length - tournament.currentLevel;
+    const currentLevelData = tournament.blindStructure[tournament.currentLevel - 1];
+    const estimatedTime = tournament.timeRemaining +
+      levelsRemaining * (currentLevelData?.duration ?? 900);
+
+    return {
+      playersRemaining: activePlayers.length,
+      totalPlayers: tournament.players.length,
+      totalChips,
+      averageStack: activePlayers.length > 0 ? Math.round(totalChips / activePlayers.length) : 0,
+      largestStack: activePlayers.length > 0 ? Math.max(...activePlayers.map(p => p.chips)) : 0,
+      smallestStack: activePlayers.length > 0 ? Math.min(...activePlayers.map(p => p.chips)) : 0,
+      activeTables,
+      currentLevel: tournament.currentLevel,
+      estimatedTimeRemaining: estimatedTime,
+      eliminationsThisLevel: levelElims,
+    };
+  }, [tournament]);
 
   if (!stats) return null;
 

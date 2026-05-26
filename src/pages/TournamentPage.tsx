@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { Navigate } from 'react-router';
 import { useTournamentStore } from '../store/tournamentStore';
 import { TimerDisplay } from '../components/timer/TimerDisplay';
 import { TablesView } from '../components/tables/TablesView';
@@ -13,17 +12,12 @@ import { LayoutGrid, Users, Trophy, List } from 'lucide-react';
 type Tab = 'tables' | 'players' | 'ranking' | 'blinds';
 
 export function TournamentPage() {
-  const navigate = useNavigate();
   const tournament = useTournamentStore(s => s.tournament);
   const [activeTab, setActiveTab] = useState<Tab>('tables');
 
-  useEffect(() => {
-    if (!tournament) {
-      navigate('/setup');
-    }
-  }, [tournament, navigate]);
-
-  if (!tournament) return null;
+  if (!tournament) {
+    return <Navigate to="/setup" replace />;
+  }
 
   const tabs: { id: Tab; label: string; icon: typeof LayoutGrid }[] = [
     { id: 'tables', label: 'Tables', icon: LayoutGrid },
