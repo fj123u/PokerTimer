@@ -34,7 +34,6 @@ export function SetupPage() {
     maxPlayersPerTable: 9,
     startingStack: 10000,
     totalDuration: 180,
-    levelDuration: 15,
     enableAntes: true,
     enableBounty: false,
     enableReentry: false,
@@ -207,31 +206,18 @@ export function SetupPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Durée totale</label>
-              <select
-                value={config.totalDuration}
-                onChange={e => setConfig({ ...config, totalDuration: Number(e.target.value) })}
-                className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500"
-              >
-                {DURATION_OPTIONS.map(n => (
-                  <option key={n} value={n}>{formatDuration(n)}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Durée niveaux (min)</label>
-              <select
-                value={config.levelDuration}
-                onChange={e => setConfig({ ...config, levelDuration: Number(e.target.value) })}
-                className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500"
-              >
-                {[3, 5, 8, 10, 12, 15, 20, 25, 30, 40, 45, 60].map(n => (
-                  <option key={n} value={n}>{n} minutes</option>
-                ))}
-              </select>
-            </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1.5">Durée totale du tournoi</label>
+            <select
+              value={config.totalDuration}
+              onChange={e => setConfig({ ...config, totalDuration: Number(e.target.value) })}
+              className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500"
+            >
+              {DURATION_OPTIONS.map(n => (
+                <option key={n} value={n}>{formatDuration(n)}</option>
+              ))}
+            </select>
+            <p className="text-xs text-gray-500 mt-1">Les niveaux et pauses sont calculés automatiquement</p>
           </div>
 
           {/* Buy-in / Gage */}

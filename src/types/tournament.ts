@@ -36,7 +36,6 @@ export interface TournamentConfig {
   maxPlayersPerTable: number;
   startingStack: number;
   totalDuration: number; // in minutes
-  levelDuration: number; // in minutes
   enableAntes: boolean;
   enableBounty: boolean;
   enableReentry: boolean;

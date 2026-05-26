@@ -47,7 +47,6 @@ export const useTournamentStore = create<TournamentState>((set, get) => ({
     const blindStructure = generateBlindStructure(
       config.startingStack,
       config.totalDuration,
-      config.levelDuration,
       players.length,
       config.enableAntes
     );
