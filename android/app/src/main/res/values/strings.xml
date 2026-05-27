@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PokerTimer</string>
+    <string name="title_activity_main">PokerTimer</string>
+    <string name="package_name">com.pokertimer.app</string>
+    <string name="custom_url_scheme">com.pokertimer.app</string>
+</resources>
