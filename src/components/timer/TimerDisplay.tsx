@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Play, Pause, SkipForward, SkipBack, Maximize } from 'lucide-react';
+import { Play, Pause, SkipForward, SkipBack } from 'lucide-react';
 import { useTournamentStore } from '../../store/tournamentStore';
 import { formatTime } from '../../hooks/useTimer';
 import { formatChips } from '../../utils/blinds';
@@ -38,14 +38,6 @@ export function TimerDisplay() {
   const isBreak = currentBlind?.isBreak ?? false;
   const isLow = tournament.timeRemaining <= 60 && !isBreak;
 
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else {
-      document.exitFullscreen();
-    }
-  };
-
   return (
     <div className={`glass-card p-6 sm:p-8 relative overflow-hidden ${isBreak ? 'glow-gold' : isLow ? 'glow-red' : 'glow-green'}`}>
       {isBreak && (
@@ -61,12 +53,6 @@ export function TimerDisplay() {
             </h2>
             <p className="text-gray-500 text-sm mt-0.5">{tournament.config.name}</p>
           </div>
-          <button
-            onClick={toggleFullscreen}
-            className="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors"
-          >
-            <Maximize size={20} />
-          </button>
         </div>
 
         {/* Timer */}

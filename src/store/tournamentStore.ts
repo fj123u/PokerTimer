@@ -48,7 +48,8 @@ export const useTournamentStore = create<TournamentState>((set, get) => ({
       config.startingStack,
       config.totalDuration,
       players.length,
-      config.enableAntes
+      config.enableAntes,
+      config.enableBreaks
     );
 
     const tables = generateTables(players, config.maxPlayersPerTable);

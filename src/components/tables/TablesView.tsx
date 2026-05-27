@@ -45,10 +45,7 @@ export function TablesView() {
                           {player.name.charAt(0).toUpperCase()}
                         </span>
                       </div>
-                      <div>
-                        <span className="text-sm font-medium text-white">{player.name}</span>
-                        <p className="text-xs text-gray-500">{player.chips.toLocaleString()} jetons</p>
-                      </div>
+                      <span className="text-sm font-medium text-white">{player.name}</span>
                     </div>
                     <button
                       onClick={() => eliminatePlayer(player.id)}

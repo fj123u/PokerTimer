@@ -31,7 +31,7 @@ export function VictoryScreen() {
 
   if (!tournament || tournament.status !== 'finished') return null;
 
-  const itmPlaces = tournament.config.itmPlaces;
+  const itmPlaces = tournament.config.itmPlaces || 3;
   const isBuyIn = tournament.config.buyInLabel === 'Buy-in';
   const prizePool = isBuyIn ? tournament.config.buyIn * tournament.players.length : 0;
 

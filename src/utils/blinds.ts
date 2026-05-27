@@ -16,13 +16,14 @@ export function generateBlindStructure(
   startingStack: number,
   totalDurationMinutes: number,
   playerCount: number,
-  enableAntes: boolean
+  enableAntes: boolean,
+  enableBreaks: boolean = true
 ): BlindLevel[] {
   // Calcul automatique de la durée des niveaux et du nombre de niveaux
   // Vise entre 10 et 20 niveaux selon la durée totale
   const targetLevels = Math.max(8, Math.min(20, Math.round(totalDurationMinutes / 12)));
   const breakInterval = Math.max(4, Math.min(8, Math.round(targetLevels / 3)));
-  const numBreaks = Math.floor((targetLevels - 1) / breakInterval);
+  const numBreaks = enableBreaks ? Math.floor((targetLevels - 1) / breakInterval) : 0;
   const breakDuration = 5; // 5 min per break
   const playableMinutes = totalDurationMinutes - (numBreaks * breakDuration);
   const levelDurationMinutes = Math.max(3, Math.round(playableMinutes / targetLevels));
@@ -42,7 +43,7 @@ export function generateBlindStructure(
 
   for (let i = 0; i < targetLevels; i++) {
     // Pause avant ce niveau ?
-    if (i > 0 && i % breakInterval === 0) {
+    if (enableBreaks && i > 0 && i % breakInterval === 0) {
       levels.push({
         id: uuid(),
         level: levelNumber,

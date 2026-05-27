@@ -37,6 +37,7 @@ export interface TournamentConfig {
   startingStack: number;
   totalDuration: number; // in minutes
   enableAntes: boolean;
+  enableBreaks: boolean;
   enableBounty: boolean;
   enableReentry: boolean;
   enableAddon: boolean;

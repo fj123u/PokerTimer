@@ -35,6 +35,7 @@ export function SetupPage() {
     startingStack: 10000,
     totalDuration: 180,
     enableAntes: true,
+    enableBreaks: true,
     enableBounty: false,
     enableReentry: false,
     enableAddon: false,
@@ -281,6 +282,7 @@ export function SetupPage() {
             <label className="block text-sm font-medium text-gray-300">Options</label>
             {[
               { key: 'enableAntes' as const, label: 'Activer les antes' },
+              { key: 'enableBreaks' as const, label: 'Inclure des pauses' },
               { key: 'enableBounty' as const, label: 'Mode bounty' },
               { key: 'enableReentry' as const, label: 'Re-entry autorisé' },
               { key: 'enableAddon' as const, label: 'Add-on disponible' },

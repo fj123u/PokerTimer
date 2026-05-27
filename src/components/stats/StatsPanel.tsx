@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Users, Coins, TrendingUp, LayoutGrid, Clock, Target } from 'lucide-react';
+import { Users, Coins, Trophy, LayoutGrid, Clock, Target } from 'lucide-react';
 import { useTournamentStore } from '../../store/tournamentStore';
 import { formatChips } from '../../utils/blinds';
 import { formatTimeLong } from '../../hooks/useTimer';
@@ -18,10 +18,14 @@ export function StatsPanel() {
       e => e.level === tournament.currentLevel
     ).length;
 
-    const levelsRemaining = tournament.blindStructure.length - tournament.currentLevel;
-    const currentLevelData = tournament.blindStructure[tournament.currentLevel - 1];
-    const estimatedTime = tournament.timeRemaining +
-      levelsRemaining * (currentLevelData?.duration ?? 900);
+    // Temps estimé = temps écoulé soustrait de la durée totale configurée
+    let estimatedTime: number;
+    if (tournament.startedAt) {
+      const elapsed = (Date.now() - tournament.startedAt) / 1000;
+      estimatedTime = Math.max(0, tournament.config.totalDuration * 60 - elapsed);
+    } else {
+      estimatedTime = tournament.config.totalDuration * 60;
+    }
 
     return {
       playersRemaining: activePlayers.length,
@@ -55,9 +59,11 @@ export function StatsPanel() {
       bg: 'bg-emerald-500/10',
     },
     {
-      icon: TrendingUp,
-      label: 'Plus gros stack',
-      value: formatChips(stats.largestStack),
+      icon: Trophy,
+      label: 'Prize Pool',
+      value: tournament!.config.buyInLabel === 'Buy-in'
+        ? `${tournament!.config.buyIn * stats.totalPlayers}€`
+        : '—',
       color: 'text-amber-400',
       bg: 'bg-amber-500/10',
     },
